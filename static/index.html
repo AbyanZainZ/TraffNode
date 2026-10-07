@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ TraffNode — VPS Multi-Proxy Passive Income Engine</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌐</text></svg>">
+</head>
+<body>
+    <div class="tn-container">
+        <!-- TOP HEADER -->
+        <header class="tn-header">
+            <div class="tn-brand">
+                <span class="tn-logo-icon">🌐</span>
+                <div>
+                    <h1 class="tn-title">TRAFFNODE ENGINE</h1>
+                    <p class="tn-subtitle">VPS Multi-Proxy Passive Income & Bandwidth Monetization Harvester</p>
+                </div>
+            </div>
+            <div class="tn-header-stats">
+                <div class="tn-chip">
+                    <span class="tn-chip-label">PORT:</span>
+                    <span class="tn-chip-value" style="color: #00e5ff;">8888</span>
+                </div>
+                <div class="tn-chip">
+                    <span class="tn-chip-label">SERVER IP:</span>
+                    <span class="tn-chip-value" id="val-server-ip">Detecting...</span>
+                </div>
+                <div class="tn-badge-live">
+                    <span class="tn-pulse-dot"></span>
+                    <span>24/7 DAEMON</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- TOP METRICS GRID -->
+        <div class="tn-metrics-grid">
+            <div class="tn-card tn-metric-card" style="border-left-color: #00e676;">
+                <div class="tn-metric-label">RUNNING WORKERS</div>
+                <div class="tn-metric-value" style="color: #00e676;" id="stat-running-nodes">0</div>
+                <div class="tn-metric-desc" id="stat-total-nodes">0 Total Nodes</div>
+            </div>
+            <div class="tn-card tn-metric-card" style="border-left-color: #00e5ff;">
+                <div class="tn-metric-label">PROXY HEALTH</div>
+                <div class="tn-metric-value" style="color: #00e5ff;" id="stat-alive-nodes">0</div>
+                <div class="tn-metric-desc" id="stat-alive-pct">0% Alive & Siap</div>
+            </div>
+            <div class="tn-card tn-metric-card" style="border-left-color: #b388ff;">
+                <div class="tn-metric-label">DATA TRAFFIC (IN / OUT)</div>
+                <div class="tn-metric-value" style="color: #b388ff;" id="stat-bandwidth-total">0 B</div>
+                <div class="tn-metric-desc" id="stat-bandwidth-speed">0 B/s Up • 0 B/s Down</div>
+            </div>
+            <div class="tn-card tn-metric-card" style="border-left-color: #ffd600;">
+                <div class="tn-metric-label">SYSTEM VITALS (VPS)</div>
+                <div class="tn-metric-value" style="color: #ffd600;" id="stat-cpu-ram">0% CPU</div>
+                <div class="tn-metric-desc" id="stat-ram-detail">RAM: 0 MB / 0 MB</div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTROL PANELS -->
+        <div class="tn-main-grid">
+            <!-- LEFT PANEL: CONFIG & PROXIES INPUT -->
+            <div class="tn-card">
+                <div class="tn-card-header">
+                    <span class="tn-card-title">🔑 Konfigurasi & Input Proxy Node</span>
+                    <span class="tn-tag" id="tag-parse-count">0 Proxy</span>
+                </div>
+
+                <div class="tn-input-group">
+                    <label>TraffMonetizer Token (Dashboard Account):</label>
+                    <input type="text" id="cfg-token" class="tn-input" placeholder="Paste Token TraffMonetizer Anda di sini...">
+                </div>
+
+                <div class="tn-input-group" style="margin-top: 10px;">
+                    <label>Daftar Proxy Residential / Datacenter (1 per baris, format bebas):</label>
+                    <textarea id="proxies-textarea" class="tn-textarea" placeholder="Format yang didukung:&#10;45.38.107.97:6014:user:pass&#10;socks5://user:pass@host:port&#10;http://31.58.9.4:6077"></textarea>
+                </div>
+
+                <div class="tn-button-group">
+                    <button class="tn-btn tn-btn-primary" id="btn-save-proxies">
+                        <span>💾 SIMPAN PROXY</span>
+                    </button>
+                    <button class="tn-btn tn-btn-check" id="btn-check-proxies">
+                        <span>🩺 TEST SEMUA PROXY</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: ORCHESTRATION & SUPERVISOR -->
+            <div class="tn-card">
+                <div class="tn-card-header">
+                    <span class="tn-card-title">🚀 Kontrol Master Worker & Auto-Heal</span>
+                    <span class="tn-tag" style="background: #004d2a; color: #00e676; border-color: #00874a;">Auto-Recovery ON</span>
+                </div>
+
+                <p style="font-size: 11.5px; color: #90a4ae; margin-bottom: 12px;">
+                    Setiap node proxy dijalankan dalam proses terisolasi via <code>proxychains4</code>. Sistem secara otomatis memantau koneksi dan melakukan auto-restart jika ada node yang drop.
+                </p>
+
+                <!-- MASTER BUTTONS -->
+                <div class="tn-master-buttons">
+                    <button class="tn-btn tn-btn-start-all" id="btn-start-all">
+                        <span style="font-size: 15px;">🚀 START ALL WORKERS</span>
+                    </button>
+                    <button class="tn-btn tn-btn-stop-all" id="btn-stop-all">
+                        <span>🛑 STOP ALL</span>
+                    </button>
+                    <button class="tn-btn tn-btn-restart-all" id="btn-restart-all">
+                        <span>🔄 RESTART ALL</span>
+                    </button>
+                </div>
+
+                <!-- SYSTEM RESOURCES BARS -->
+                <div class="tn-resource-box">
+                    <div class="tn-resource-row">
+                        <span>CPU Load:</span>
+                        <div class="tn-progress-bar"><div class="tn-progress-fill" id="bar-cpu" style="width: 0%; background: #ffd600;"></div></div>
+                        <span id="txt-cpu" style="font-family: monospace;">0%</span>
+                    </div>
+                    <div class="tn-resource-row" style="margin-top: 8px;">
+                        <span>RAM Usage:</span>
+                        <div class="tn-progress-bar"><div class="tn-progress-fill" id="bar-ram" style="width: 0%; background: #00e5ff;"></div></div>
+                        <span id="txt-ram" style="font-family: monospace;">0%</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 14px; font-size: 11px; color: #78909c;">
+                    💡 <strong>Tips:</strong> Disarankan menggunakan proxy Residential untuk earning maksimal di TraffMonetizer.
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLE SECTION: LIVE WORKER MONITOR -->
+        <div class="tn-card" style="margin-top: 16px;">
+            <div class="tn-card-header">
+                <div>
+                    <span class="tn-card-title">📊 Live Worker Nodes Monitor</span>
+                    <span style="font-size: 11px; color: var(--text-dim); margin-left: 10px;" id="lbl-table-sync">Sinkronisasi tiap 4 detik</span>
+                </div>
+                <input type="text" id="table-filter" class="tn-filter-input" placeholder="🔍 Cari ID / Negara / IP / Status...">
+            </div>
+
+            <div class="tn-table-wrapper">
+                <table class="tn-table">
+                    <thead>
+                        <tr>
+                            <th>NODE ID</th>
+                            <th>STATUS</th>
+                            <th>DEVICE NAME (COUNTRY - IP)</th>
+                            <th>UPSTREAM PROXY</th>
+                            <th>LATENCY</th>
+                            <th>DATA TRAFFIC (IN / OUT)</th>
+                            <th>UPTIME</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nodes-tbody">
+                        <tr>
+                            <td colspan="8" class="tn-text-center tn-muted">Belum ada proxy node. Masukkan proxy di atas lalu klik "SIMPAN PROXY".</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="tn-footer">
+            <span>⚡ TraffNode v1.0 • Dedicated VPS Passive Income Engine (Port 8888)</span>
+            <span id="health-status-text">System Daemon Ready</span>
+        </footer>
+    </div>
+
+    <!-- LOG MODAL -->
+    <div id="log-modal" class="tn-modal">
+        <div class="tn-modal-content">
+            <div class="tn-modal-header">
+                <span id="log-modal-title" style="font-weight: bold; color: #00e5ff;">Node Worker Log</span>
+                <span class="tn-modal-close" id="btn-close-modal">&times;</span>
+            </div>
+            <pre id="log-modal-body" class="tn-modal-body"></pre>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="tn-toast" class="tn-toast"></div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

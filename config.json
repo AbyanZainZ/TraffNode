@@ -1,0 +1,9 @@
+{
+  "host": "0.0.0.0",
+  "dashboard_port": 8888,
+  "traff_token": "",
+  "check_timeout": 5.0,
+  "max_instances": 500,
+  "auto_heal_interval_seconds": 30,
+  "auto_start_on_boot": true
+}
