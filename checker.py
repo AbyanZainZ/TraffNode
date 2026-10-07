@@ -107,6 +107,10 @@ class ProxyNode:
             return f"{proto}://{self.user}:{self.password}@{self.host}:{self.port}"
         return f"{proto}://{self.host}:{self.port}"
 
+    @property
+    def proxy_url(self) -> str:
+        return self.to_url()
+
     def update_device_name(self):
         c = self.country if self.country and self.country != "Unknown" else "Node"
         ip = self.exit_ip or self.host or "IP"
