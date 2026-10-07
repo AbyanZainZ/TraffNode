@@ -42,6 +42,13 @@ if [ ! -f "$TM_PATH" ] && [ ! -f "$TM_SYMLINK" ]; then
     ln -sf "$TM_PATH" "$TM_SYMLINK" 2>/dev/null || true
 fi
 
+WP_PATH="/usr/local/bin/wireproxy"
+if [ ! -f "$WP_PATH" ]; then
+    echo -e "${YELLOW}Mengunduh binary wireproxy (Userspace WireGuard untuk Surfshark)...${NC}"
+    curl -sL "https://github.com/windtf/wireproxy/releases/download/v1.1.3/wireproxy_linux_amd64.tar.gz" | tar -xz -C /usr/local/bin wireproxy 2>/dev/null || true
+    chmod +x "$WP_PATH" 2>/dev/null || true
+fi
+
 echo -e "${GREEN}[3/6] Menyiapkan direktori proyek di ${INSTALL_DIR}...${NC}"
 if [ -f "app.py" ] && [ -d "static" ]; then
     echo -e "${CYAN}Menyalin file dari direktori saat ini...${NC}"

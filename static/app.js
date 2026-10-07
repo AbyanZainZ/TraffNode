@@ -1,5 +1,5 @@
 // ==============================================================================
-// TRAFFNODE CYBER COCKPIT JAVASCRIPT (PORT 8888)
+// TRAFFNODE CYBER COCKPIT JAVASCRIPT (PORT 8888) — DUAL ENGINE & SURFSHARK
 // ==============================================================================
 
 let currentStatusData = null;
@@ -10,7 +10,7 @@ const valServerIp = document.getElementById('val-server-ip');
 const statRunningNodes = document.getElementById('stat-running-nodes');
 const statTotalNodes = document.getElementById('stat-total-nodes');
 const statAliveNodes = document.getElementById('stat-alive-nodes');
-const statAlivePct = document.getElementById('stat-alive-pct');
+const statCompDetail = document.getElementById('stat-comp-detail');
 const statBandwidthTotal = document.getElementById('stat-bandwidth-total');
 const statBandwidthSpeed = document.getElementById('stat-bandwidth-speed');
 const statCpuRam = document.getElementById('stat-cpu-ram');
@@ -18,12 +18,21 @@ const statRamDetail = document.getElementById('stat-ram-detail');
 
 // DOM ELEMENTS — CONFIG & INPUTS
 const cfgToken = document.getElementById('cfg-token');
+const btnSaveToken = document.getElementById('btn-save-token');
 const tagParseCount = document.getElementById('tag-parse-count');
+
+// SURFSHARK ELEMENTS
+const cfgSurfsharkKey = document.getElementById('cfg-surfshark-key');
+const cfgSurfsharkRegion = document.getElementById('cfg-surfshark-region');
+const cfgSurfsharkCount = document.getElementById('cfg-surfshark-count');
+const btnGenerateSurfshark = document.getElementById('btn-generate-surfshark');
+
+// PROXIES ELEMENTS
 const proxiesTextarea = document.getElementById('proxies-textarea');
 const btnSaveProxies = document.getElementById('btn-save-proxies');
 const btnCheckProxies = document.getElementById('btn-check-proxies');
 
-// DOM ELEMENTS — CONTROLS & BARS
+// CONTROLS & BARS
 const btnStartAll = document.getElementById('btn-start-all');
 const btnStopAll = document.getElementById('btn-stop-all');
 const btnRestartAll = document.getElementById('btn-restart-all');
@@ -32,7 +41,7 @@ const barRam = document.getElementById('bar-ram');
 const txtCpu = document.getElementById('txt-cpu');
 const txtRam = document.getElementById('txt-ram');
 
-// DOM ELEMENTS — TABLE & MODAL
+// TABLE & MODAL
 const tableFilter = document.getElementById('table-filter');
 const nodesTbody = document.getElementById('nodes-tbody');
 const toastEl = document.getElementById('tn-toast');
@@ -43,7 +52,18 @@ const logModalTitle = document.getElementById('log-modal-title');
 const logModalBody = document.getElementById('log-modal-body');
 const btnCloseModal = document.getElementById('btn-close-modal');
 
-// FORMAT HELPER
+// TAB SWITCHER
+window.switchTab = function(tabName) {
+    document.querySelectorAll('.tn-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tn-tab-content').forEach(c => c.classList.remove('active'));
+
+    const btn = document.getElementById(`tab-btn-${tabName}`);
+    const content = document.getElementById(`tab-content-${tabName}`);
+    if (btn) btn.classList.add('active');
+    if (content) content.classList.add('active');
+};
+
+// FORMAT HELPERS
 function formatBytes(bytes) {
     if (!bytes || bytes === 0) return '0 B';
     const k = 1024;
@@ -72,12 +92,13 @@ function showToast(msg, isError = false) {
     }, 3500);
 }
 
-// COUNT HELPER
+// PARSE COUNT HELPER
 function updateParseCount() {
+    if (!proxiesTextarea) return;
     const lines = proxiesTextarea.value.split('\n').filter(l => l.trim().length > 0 && !l.trim().startsWith('#'));
-    tagParseCount.textContent = `${lines.length} Proxy`;
+    if (tagParseCount) tagParseCount.textContent = `${lines.length} Proxy`;
 }
-proxiesTextarea.addEventListener('input', updateParseCount);
+if (proxiesTextarea) proxiesTextarea.addEventListener('input', updateParseCount);
 
 // FETCH STATUS
 async function fetchStatus() {
@@ -96,7 +117,7 @@ async function fetchStatus() {
 async function fetchRawProxies() {
     try {
         const res = await fetch('/api/proxies/raw');
-        if (res.ok && proxiesTextarea.value === "") {
+        if (res.ok && proxiesTextarea && proxiesTextarea.value === "") {
             proxiesTextarea.value = await res.text();
             updateParseCount();
         }
@@ -107,9 +128,19 @@ async function fetchRawProxies() {
 function renderDashboard(data) {
     valServerIp.textContent = data.server_ip || '127.0.0.1';
 
-    // Token
-    if (document.activeElement !== cfgToken && data.config.traff_token) {
-        cfgToken.value = data.config.traff_token;
+    // Populate Configs if not currently typing
+    const cfg = data.config || {};
+    if (document.activeElement !== cfgToken && cfg.traff_token) {
+        cfgToken.value = cfg.traff_token;
+    }
+    if (document.activeElement !== cfgSurfsharkKey && cfg.surfshark_private_key) {
+        cfgSurfsharkKey.value = cfg.surfshark_private_key;
+    }
+    if (document.activeElement !== cfgSurfsharkRegion && cfg.surfshark_region) {
+        cfgSurfsharkRegion.value = cfg.surfshark_region;
+    }
+    if (document.activeElement !== cfgSurfsharkCount && cfg.surfshark_node_count) {
+        cfgSurfsharkCount.value = cfg.surfshark_node_count;
     }
 
     // Metrics
@@ -117,13 +148,15 @@ function renderDashboard(data) {
     const total = m.total_nodes || 0;
     const running = m.running_nodes || 0;
     const alive = m.alive_nodes || 0;
+    const ssNodes = m.surfshark_nodes || 0;
+    const pxNodes = m.proxy_nodes || 0;
 
     statRunningNodes.textContent = running;
     statTotalNodes.textContent = `${total} Total Nodes`;
 
-    statAliveNodes.textContent = alive;
-    const alivePct = total > 0 ? Math.round((alive / total) * 100) : 0;
-    statAlivePct.textContent = `${alivePct}% Alive & Siap`;
+    statAliveNodes.textContent = `${alive} Alive`;
+    statCompDetail.textContent = `🦈 ${ssNodes} Surfshark • 🌐 ${pxNodes} Proxy`;
+    tagParseCount.textContent = `${total} Nodes Ready`;
 
     // Bandwidth
     const bw = m.bandwidth || {};
@@ -150,7 +183,7 @@ function renderDashboard(data) {
     if (m.is_checking) {
         healthStatusText.innerHTML = `<span style="color: #ffd600;">🩺 Sedang menguji kesehatan proxy di latar belakang...</span>`;
     } else {
-        healthStatusText.textContent = `TraffNode Daemon Running (Port ${data.config.dashboard_port || 8888})`;
+        healthStatusText.textContent = `TraffNode Daemon Running (Port ${cfg.dashboard_port || 8888})`;
     }
 
     renderTable(data.nodes || []);
@@ -161,54 +194,70 @@ function renderTable(nodes) {
     const filter = tableFilter.value.toLowerCase().trim();
 
     if (!nodes || nodes.length === 0) {
-        nodesTbody.innerHTML = `<tr><td colspan="8" class="tn-text-center tn-muted">Belum ada proxy node. Masukkan proxy di atas lalu klik "SIMPAN PROXY".</td></tr>`;
+        nodesTbody.innerHTML = `<tr><td colspan="9" class="tn-text-center tn-muted">Belum ada node aktif. Generate Surfshark atau masukkan proxy di atas lalu klik "START ALL WORKERS".</td></tr>`;
         return;
     }
 
     const filtered = nodes.filter(n => {
         if (!filter) return true;
-        const str = `${n.id} ${n.device_name} ${n.country} ${n.host} ${n.status}`.toLowerCase();
+        const str = `${n.id} ${n.node_type} ${n.device_name} ${n.country} ${n.endpoint || ''} ${n.host || ''} ${n.status}`.toLowerCase();
         return str.includes(filter);
     });
 
     if (filtered.length === 0) {
-        nodesTbody.innerHTML = `<tr><td colspan="8" class="tn-text-center tn-muted">Tidak ada node yang cocok dengan pencarian "${filter}".</td></tr>`;
+        nodesTbody.innerHTML = `<tr><td colspan="9" class="tn-text-center tn-muted">Tidak ada node yang cocok dengan pencarian "${filter}".</td></tr>`;
         return;
     }
 
     let html = '';
     filtered.forEach(n => {
+        // Type Badge
+        const isSS = (n.node_type === "surfshark");
+        const typeBadge = isSS
+            ? `<span class="tn-badge tn-badge-surfshark">🦈 SURFSHARK</span>`
+            : `<span class="tn-badge tn-badge-proxy">🌐 PROXY</span>`;
+
         // Status Badge
-        let badge = '';
+        let statusBadge = '';
         if (n.status === "RUNNING") {
-            badge = `<span class="tn-badge tn-badge-running">🟢 RUNNING</span>`;
+            statusBadge = `<span class="tn-badge tn-badge-running">🟢 RUNNING</span>`;
         } else if (n.status === "ERROR") {
-            badge = `<span class="tn-badge tn-badge-stopped">🔴 ERROR</span>`;
+            statusBadge = `<span class="tn-badge tn-badge-stopped" title="${n.error || ''}">🔴 ERROR</span>`;
         } else if (n.status === "STOPPED") {
-            badge = `<span class="tn-badge tn-badge-stopped">⚪ STOPPED</span>`;
+            statusBadge = `<span class="tn-badge tn-badge-stopped">⚪ STOPPED</span>`;
         } else {
-            badge = `<span class="tn-badge tn-badge-idle">⚡ IDLE</span>`;
+            statusBadge = `<span class="tn-badge tn-badge-idle">⚡ IDLE</span>`;
         }
 
-        // Latency
-        let lat = '-';
-        if (n.latency_ms) {
+        // Latency / Port
+        let latOrPort = '';
+        if (isSS) {
+            latOrPort = `<span style="color: #40c4ff; font-weight: bold;">:${n.port}</span>`;
+        } else if (n.latency_ms) {
             const col = n.latency_ms < 300 ? '#00e676' : (n.latency_ms < 800 ? '#ffd600' : '#ff5252');
-            lat = `<span style="color: ${col}; font-weight: bold;">${n.latency_ms} ms</span>`;
+            latOrPort = `<span style="color: ${col}; font-weight: bold;">${n.latency_ms} ms</span>`;
         } else if (n.error) {
-            lat = `<span style="color: #ff5252; font-size: 10px;">${n.error}</span>`;
+            latOrPort = `<span style="color: #ff5252; font-size: 10px;">${n.error}</span>`;
+        } else {
+            latOrPort = `<span style="color: #78909c;">-</span>`;
         }
+
+        // Endpoint / Upstream
+        const upstream = isSS
+            ? `<span style="color: #80d8ff;">${n.endpoint || n.raw}</span>`
+            : `<span style="color: #cfd8dc;">[${n.protocol}] ${n.host}:${n.port}</span>`;
 
         // Data traffic
         const tf = `↑ ${formatBytes(n.bytes_out)} / ↓ ${formatBytes(n.bytes_in)}`;
 
         // Device name
-        const dev = `<span style="color: #00e5ff; font-weight: bold;">${n.device_name}</span>`;
+        const dev = `<span style="color: #00e5ff; font-weight: bold;">${n.device_name || 'Node'}</span>`;
 
         // Action buttons
         let actBtns = '';
         if (n.status === "RUNNING") {
             actBtns += `<button class="tn-btn-action" onclick="stopNode(${n.id})" title="Stop Node">⏹️ Stop</button>`;
+            actBtns += `<button class="tn-btn-action" onclick="restartNode(${n.id})" title="Restart Node">🔄</button>`;
         } else {
             actBtns += `<button class="tn-btn-action" onclick="startNode(${n.id})" title="Start Node">▶️ Start</button>`;
         }
@@ -217,10 +266,11 @@ function renderTable(nodes) {
         html += `
         <tr>
             <td style="color: #90caf9; font-weight: bold;">#${n.id}</td>
-            <td>${badge}</td>
+            <td>${typeBadge}</td>
+            <td>${statusBadge}</td>
             <td>${dev}</td>
-            <td><span style="color: #cfd8dc;">[${n.protocol}] ${n.host}:${n.port}</span></td>
-            <td>${lat}</td>
+            <td>${upstream}</td>
+            <td>${latOrPort}</td>
             <td>${tf}</td>
             <td>${formatUptime(n.uptime_seconds)}</td>
             <td>${actBtns}</td>
@@ -235,49 +285,107 @@ tableFilter.addEventListener('input', () => {
     if (currentStatusData) renderTable(currentStatusData.nodes || []);
 });
 
-// ACTIONS
-btnSaveProxies.addEventListener('click', async () => {
-    const raw = proxiesTextarea.value.trim();
-    const token = cfgToken.value.trim();
-
-    btnSaveProxies.disabled = true;
-    btnSaveProxies.innerHTML = `<span>⏳ Menyimpan...</span>`;
-
-    try {
-        if (token) {
+// ACTIONS: SAVE TOKEN
+if (btnSaveToken) {
+    btnSaveToken.addEventListener('click', async () => {
+        const token = cfgToken.value.trim();
+        try {
             await fetch('/api/config', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ traff_token: token })
             });
+            showToast("Token TraffMonetizer disimpan!");
+        } catch (e) {
+            showToast("Gagal menyimpan token.", true);
         }
-        const res = await fetch('/api/proxies', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ raw_text: raw })
-        });
-        const data = await res.json();
-        showToast(data.message || "Proxy berhasil disimpan!");
-        await fetchStatus();
-    } catch (e) {
-        showToast("Gagal menyimpan proxy.", true);
-    } finally {
-        btnSaveProxies.disabled = false;
-        btnSaveProxies.innerHTML = `<span>💾 SIMPAN PROXY</span>`;
-    }
-});
+    });
+}
 
-btnCheckProxies.addEventListener('click', async () => {
-    try {
-        const res = await fetch('/api/check', { method: 'POST' });
-        const data = await res.json();
-        showToast(data.message);
-        await fetchStatus();
-    } catch (e) {
-        showToast("Gagal memulai tes proxy.", true);
-    }
-});
+// ACTIONS: GENERATE SURFSHARK NODES
+if (btnGenerateSurfshark) {
+    btnGenerateSurfshark.addEventListener('click', async () => {
+        const privkey = cfgSurfsharkKey.value.trim();
+        const region = cfgSurfsharkRegion.value;
+        const count = parseInt(cfgSurfsharkCount.value, 10) || 50;
 
+        if (!privkey) {
+            showToast("⚠️ Harap masukkan Surfshark WireGuard Private Key!", true);
+            cfgSurfsharkKey.focus();
+            return;
+        }
+
+        btnGenerateSurfshark.disabled = true;
+        btnGenerateSurfshark.innerHTML = `<span>⏳ Menyiapkan Server Surfshark...</span>`;
+
+        try {
+            const res = await fetch('/api/surfshark/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    private_key: privkey,
+                    region: region,
+                    node_count: count,
+                    start_port: 21000,
+                    mode: "replace"
+                })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast(data.message);
+                await fetchStatus();
+            } else {
+                showToast(data.detail || "Gagal men-generate node Surfshark.", true);
+            }
+        } catch (e) {
+            showToast("Gagal menghubungi server TraffNode.", true);
+        } finally {
+            btnGenerateSurfshark.disabled = false;
+            btnGenerateSurfshark.innerHTML = `<span>🦈 GENERATE & LOAD SURFSHARK NODES</span>`;
+        }
+    });
+}
+
+// ACTIONS: SAVE PROXIES
+if (btnSaveProxies) {
+    btnSaveProxies.addEventListener('click', async () => {
+        const raw = proxiesTextarea.value.trim();
+        btnSaveProxies.disabled = true;
+        btnSaveProxies.innerHTML = `<span>⏳ Menyimpan...</span>`;
+
+        try {
+            const res = await fetch('/api/proxies', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ raw_text: raw })
+            });
+            const data = await res.json();
+            showToast(data.message || "Proxy berhasil disimpan!");
+            await fetchStatus();
+        } catch (e) {
+            showToast("Gagal menyimpan proxy.", true);
+        } finally {
+            btnSaveProxies.disabled = false;
+            btnSaveProxies.innerHTML = `<span>💾 SIMPAN PROXY</span>`;
+        }
+    });
+}
+
+// ACTIONS: TEST PROXIES
+if (btnCheckProxies) {
+    btnCheckProxies.addEventListener('click', async () => {
+        try {
+            const res = await fetch('/api/check', { method: 'POST' });
+            const data = await res.json();
+            showToast(data.message);
+            await fetchStatus();
+        } catch (e) {
+            showToast("Gagal memulai tes proxy.", true);
+        }
+    });
+}
+
+// ACTIONS: MASTER CONTROLS
 btnStartAll.addEventListener('click', async () => {
     const token = cfgToken.value.trim();
     if (!token) {
@@ -290,15 +398,21 @@ btnStartAll.addEventListener('click', async () => {
     btnStartAll.innerHTML = `<span>⏳ Menjalankan Worker...</span>`;
 
     try {
-        // Simpan token dulu
         await fetch('/api/config', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ traff_token: token })
+            body: JSON.stringify({
+                traff_token: token,
+                surfshark_private_key: cfgSurfsharkKey ? cfgSurfsharkKey.value.trim() : ""
+            })
         });
         const res = await fetch('/api/start-all', { method: 'POST' });
         const data = await res.json();
-        showToast(data.message || "Semua worker dimulai!");
+        if (data.success) {
+            showToast(data.message);
+        } else {
+            showToast(data.detail || "Gagal memulai worker.", true);
+        }
         await fetchStatus();
     } catch (e) {
         showToast("Gagal menjalankan worker.", true);
@@ -351,6 +465,16 @@ window.stopNode = async function(id) {
         await fetchStatus();
     } catch (e) {
         showToast(`Gagal menghentikan node #${id}.`, true);
+    }
+};
+
+window.restartNode = async function(id) {
+    try {
+        const res = await fetch(`/api/node/${id}/restart`, { method: 'POST' });
+        showToast(`Node #${id} di-restart.`);
+        await fetchStatus();
+    } catch (e) {
+        showToast(`Gagal restart node #${id}.`, true);
     }
 };
 

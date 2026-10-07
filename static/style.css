@@ -511,3 +511,92 @@ body {
     .tn-main-grid { grid-template-columns: 1fr; }
     .tn-master-buttons { grid-template-columns: 1fr; }
 }
+
+/* TABS & SURFSHARK CONTROLS */
+.tn-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 14px 0 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+}
+
+.tn-tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tn-tab-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-card-hover);
+}
+
+.tn-tab-btn.active {
+    color: var(--cyan);
+    background: #0d2744;
+    border: 1px solid #1a3a5c;
+}
+
+.tn-tab-content {
+    display: none;
+}
+
+.tn-tab-content.active {
+    display: block;
+}
+
+.tn-select {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: var(--text-primary);
+    font-size: 12px;
+    outline: none;
+}
+.tn-select:focus {
+    border-color: var(--border-highlight);
+}
+
+.tn-btn-surfshark {
+    background: linear-gradient(135deg, #0091ea 0%, #00e5ff 100%);
+    color: #031b2e;
+    font-weight: 800;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 145, 234, 0.35);
+}
+.tn-btn-surfshark:hover {
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.55);
+    transform: translateY(-1px);
+}
+
+.tn-btn-sm {
+    padding: 6px 12px;
+    font-size: 11px;
+    background: #0d2744;
+    color: var(--cyan);
+    border: 1px solid #1a3a5c;
+}
+.tn-btn-sm:hover {
+    background: #14375e;
+}
+
+.tn-badge-surfshark {
+    background: #052642;
+    color: #40c4ff;
+    border: 1px solid #0d47a1;
+}
+
+.tn-badge-proxy {
+    background: #1a2c42;
+    color: #b0bec5;
+    border: 1px solid #37474f;
+}

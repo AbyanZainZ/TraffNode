@@ -5,5 +5,9 @@
   "check_timeout": 5.0,
   "max_instances": 500,
   "auto_heal_interval_seconds": 30,
-  "auto_start_on_boot": true
+  "auto_start_on_boot": true,
+  "surfshark_private_key": "",
+  "surfshark_region": "all",
+  "surfshark_node_count": 50,
+  "surfshark_start_port": 21000
 }

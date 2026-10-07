@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ TraffNode — VPS Multi-Proxy Passive Income Engine</title>
+    <title>⚡ TraffNode — VPS Multi-Proxy & Surfshark Passive Income Engine</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌐</text></svg>">
 </head>
@@ -15,7 +15,7 @@
                 <span class="tn-logo-icon">🌐</span>
                 <div>
                     <h1 class="tn-title">TRAFFNODE ENGINE</h1>
-                    <p class="tn-subtitle">VPS Multi-Proxy Passive Income & Bandwidth Monetization Harvester</p>
+                    <p class="tn-subtitle">VPS Multi-Proxy & Surfshark WireGuard Passive Income Harvester</p>
                 </div>
             </div>
             <div class="tn-header-stats">
@@ -42,9 +42,9 @@
                 <div class="tn-metric-desc" id="stat-total-nodes">0 Total Nodes</div>
             </div>
             <div class="tn-card tn-metric-card" style="border-left-color: #00e5ff;">
-                <div class="tn-metric-label">PROXY HEALTH</div>
-                <div class="tn-metric-value" style="color: #00e5ff;" id="stat-alive-nodes">0</div>
-                <div class="tn-metric-desc" id="stat-alive-pct">0% Alive & Siap</div>
+                <div class="tn-metric-label">NODE COMPOSITION</div>
+                <div class="tn-metric-value" style="color: #00e5ff;" id="stat-alive-nodes">0 Alive</div>
+                <div class="tn-metric-desc" id="stat-comp-detail">🦈 0 Surfshark • 🌐 0 Proxy</div>
             </div>
             <div class="tn-card tn-metric-card" style="border-left-color: #b388ff;">
                 <div class="tn-metric-label">DATA TRAFFIC (IN / OUT)</div>
@@ -60,42 +60,89 @@
 
         <!-- MAIN CONTROL PANELS -->
         <div class="tn-main-grid">
-            <!-- LEFT PANEL: CONFIG & PROXIES INPUT -->
+            <!-- LEFT PANEL: DUAL ENGINE (SURFSHARK / PROXY LIST) -->
             <div class="tn-card">
                 <div class="tn-card-header">
-                    <span class="tn-card-title">🔑 Konfigurasi & Input Proxy Node</span>
-                    <span class="tn-tag" id="tag-parse-count">0 Proxy</span>
+                    <span class="tn-card-title">🔑 Account & Node Provider</span>
+                    <span class="tn-tag" id="tag-parse-count">0 Nodes Ready</span>
                 </div>
 
                 <div class="tn-input-group">
                     <label>TraffMonetizer Token (Dashboard Account):</label>
-                    <input type="text" id="cfg-token" class="tn-input" placeholder="Paste Token TraffMonetizer Anda di sini...">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="cfg-token" class="tn-input" placeholder="Paste Token TraffMonetizer Anda di sini...">
+                        <button class="tn-btn tn-btn-sm" id="btn-save-token" style="white-space: nowrap;">Simpan</button>
+                    </div>
                 </div>
 
-                <div class="tn-input-group" style="margin-top: 10px;">
-                    <label>Daftar Proxy Residential / Datacenter (1 per baris, format bebas):</label>
-                    <textarea id="proxies-textarea" class="tn-textarea" placeholder="Format yang didukung:&#10;45.38.107.97:6014:user:pass&#10;socks5://user:pass@host:port&#10;http://31.58.9.4:6077"></textarea>
+                <!-- MODE SELECTOR TABS -->
+                <div class="tn-tabs">
+                    <button class="tn-tab-btn active" id="tab-btn-surfshark" onclick="switchTab('surfshark')">
+                        🦈 Surfshark VPN Engine
+                    </button>
+                    <button class="tn-tab-btn" id="tab-btn-proxies" onclick="switchTab('proxies')">
+                        🌐 Custom Proxy List
+                    </button>
                 </div>
 
-                <div class="tn-button-group">
-                    <button class="tn-btn tn-btn-primary" id="btn-save-proxies">
-                        <span>💾 SIMPAN PROXY</span>
-                    </button>
-                    <button class="tn-btn tn-btn-check" id="btn-check-proxies">
-                        <span>🩺 TEST SEMUA PROXY</span>
-                    </button>
+                <!-- TAB 1: SURFSHARK ENGINE -->
+                <div id="tab-content-surfshark" class="tn-tab-content active">
+                    <div class="tn-input-group">
+                        <label>Surfshark WireGuard Private Key:</label>
+                        <input type="password" id="cfg-surfshark-key" class="tn-input" placeholder="EClA6t7WZQgOmIxWHvF78QNBxA4agOZYibFQeW+iCk8=">
+                        <span style="font-size: 10.5px; color: #78909c;">Didapat dari Dashboard Surfshark ➔ Manual Setup ➔ WireGuard</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                        <div class="tn-input-group">
+                            <label>Target Region Server:</label>
+                            <select id="cfg-surfshark-region" class="tn-select">
+                                <option value="all">Semua Negara (Acak 142 Lokasi)</option>
+                                <option value="premium">Negara Premium (US, UK, DE, SG, JP, AU, CA, NL)</option>
+                                <option value="asia">Asia Pasifik (SG, MY, ID, JP, KR, HK, TW, AU)</option>
+                                <option value="europe">Eropa (DE, UK, NL, FR, IT, ES, CH, PL)</option>
+                            </select>
+                        </div>
+                        <div class="tn-input-group">
+                            <label>Jumlah Node (1 - 500):</label>
+                            <input type="number" id="cfg-surfshark-count" class="tn-input" value="50" min="1" max="500">
+                        </div>
+                    </div>
+
+                    <div class="tn-button-group" style="margin-top: 14px;">
+                        <button class="tn-btn tn-btn-surfshark" id="btn-generate-surfshark">
+                            <span>🦈 GENERATE & LOAD SURFSHARK NODES</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CUSTOM PROXIES -->
+                <div id="tab-content-proxies" class="tn-tab-content">
+                    <div class="tn-input-group">
+                        <label>Daftar Proxy Residential / Datacenter (1 per baris, format bebas):</label>
+                        <textarea id="proxies-textarea" class="tn-textarea" placeholder="Format yang didukung:&#10;45.38.107.97:6014:user:pass&#10;socks5://user:pass@host:port&#10;http://31.58.9.4:6077"></textarea>
+                    </div>
+
+                    <div class="tn-button-group">
+                        <button class="tn-btn tn-btn-primary" id="btn-save-proxies">
+                            <span>💾 SIMPAN PROXY</span>
+                        </button>
+                        <button class="tn-btn tn-btn-check" id="btn-check-proxies">
+                            <span>🩺 TEST PROXY</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <!-- RIGHT PANEL: ORCHESTRATION & SUPERVISOR -->
             <div class="tn-card">
                 <div class="tn-card-header">
-                    <span class="tn-card-title">🚀 Kontrol Master Worker & Auto-Heal</span>
+                    <span class="tn-card-title">🚀 Master Controls & Resource Status</span>
                     <span class="tn-tag" style="background: #004d2a; color: #00e676; border-color: #00874a;">Auto-Recovery ON</span>
                 </div>
 
                 <p style="font-size: 11.5px; color: #90a4ae; margin-bottom: 12px;">
-                    Setiap node proxy dijalankan dalam proses terisolasi via <code>proxychains4</code>. Sistem secara otomatis memantau koneksi dan melakukan auto-restart jika ada node yang drop.
+                    Mendukung isolasi multi-port <strong>Surfshark WireProxy</strong> dan <strong>Custom Proxychains</strong> secara simultan 24/7 di VPS Linux.
                 </p>
 
                 <!-- MASTER BUTTONS -->
@@ -126,7 +173,7 @@
                 </div>
 
                 <div style="margin-top: 14px; font-size: 11px; color: #78909c;">
-                    💡 <strong>Tips:</strong> Disarankan menggunakan proxy Residential untuk earning maksimal di TraffMonetizer.
+                    💡 <strong>Tips Surfshark:</strong> Setiap node Surfshark otomatis mendapatkan IP residensial/VPN bersih yang dirotasi per negara, anti-banned, dan bandwidth unlimited.
                 </div>
             </div>
         </div>
@@ -138,7 +185,7 @@
                     <span class="tn-card-title">📊 Live Worker Nodes Monitor</span>
                     <span style="font-size: 11px; color: var(--text-dim); margin-left: 10px;" id="lbl-table-sync">Sinkronisasi tiap 4 detik</span>
                 </div>
-                <input type="text" id="table-filter" class="tn-filter-input" placeholder="🔍 Cari ID / Negara / IP / Status...">
+                <input type="text" id="table-filter" class="tn-filter-input" placeholder="🔍 Cari ID / Negara / IP / Surfshark / Status...">
             </div>
 
             <div class="tn-table-wrapper">
@@ -146,10 +193,11 @@
                     <thead>
                         <tr>
                             <th>NODE ID</th>
+                            <th>TYPE</th>
                             <th>STATUS</th>
                             <th>DEVICE NAME (COUNTRY - IP)</th>
-                            <th>UPSTREAM PROXY</th>
-                            <th>LATENCY</th>
+                            <th>ENDPOINT / UPSTREAM</th>
+                            <th>PORT / LATENCY</th>
                             <th>DATA TRAFFIC (IN / OUT)</th>
                             <th>UPTIME</th>
                             <th>ACTIONS</th>
@@ -157,7 +205,7 @@
                     </thead>
                     <tbody id="nodes-tbody">
                         <tr>
-                            <td colspan="8" class="tn-text-center tn-muted">Belum ada proxy node. Masukkan proxy di atas lalu klik "SIMPAN PROXY".</td>
+                            <td colspan="9" class="tn-text-center tn-muted">Belum ada node aktif. Generate Surfshark atau masukkan proxy di atas lalu klik "START ALL WORKERS".</td>
                         </tr>
                     </tbody>
                 </table>
@@ -166,7 +214,7 @@
 
         <!-- FOOTER -->
         <footer class="tn-footer">
-            <span>⚡ TraffNode v1.0 • Dedicated VPS Passive Income Engine (Port 8888)</span>
+            <span>⚡ TraffNode v2.0 • VPS Multi-Proxy & Surfshark Passive Income Engine (Port 8888)</span>
             <span id="health-status-text">System Daemon Ready</span>
         </footer>
     </div>

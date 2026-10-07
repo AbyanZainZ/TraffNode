@@ -23,6 +23,11 @@ class ProxyNode:
         self.user: Optional[str] = None
         self.password: Optional[str] = None
 
+        self.node_type: str = "proxy"  # "proxy" or "surfshark"
+        self.endpoint: Optional[str] = None
+        self.pub_key: Optional[str] = None
+        self.city: str = ""
+
         # Health info
         self.is_alive: Optional[bool] = None
         self.latency_ms: Optional[float] = None
@@ -35,6 +40,7 @@ class ProxyNode:
         # Worker status
         self.status: str = "IDLE"  # IDLE, STARTING, RUNNING, STOPPED, ERROR
         self.pid: Optional[int] = None
+        self.wp_pid: Optional[int] = None  # Wireproxy PID for surfshark
         self.started_at: Optional[float] = None
         self.bytes_in: int = 0
         self.bytes_out: int = 0
@@ -120,6 +126,7 @@ class ProxyNode:
         uptime_sec = round(time.time() - self.started_at) if (self.status == "RUNNING" and self.started_at) else 0
         return {
             "id": self.id,
+            "node_type": self.node_type,
             "raw": self.raw,
             "protocol": self.protocol.upper(),
             "host": self.host,
@@ -130,6 +137,8 @@ class ProxyNode:
             "latency_ms": self.latency_ms,
             "exit_ip": self.exit_ip or self.host,
             "country": self.country,
+            "city": self.city,
+            "endpoint": self.endpoint,
             "device_name": self.device_name or f"Node-{self.id}",
             "status": self.status,
             "pid": self.pid,

@@ -1,0 +1,854 @@
+[
+  {
+    "country": "Albania",
+    "city": "Tirana",
+    "endpoint": "al-tia.prod.surfshark.com:51820",
+    "pubKey": "l8EOWPyzt/njrb74CADY4VOhns/TbUN6KFTbytHcFQw="
+  },
+  {
+    "country": "Algeria",
+    "city": "Algiers",
+    "endpoint": "dz-alg.prod.surfshark.com:51820",
+    "pubKey": "KyFFiO8bY3wZGpxJf7aqEH3TrG+Jj4ZfNOyh2oS7ICU="
+  },
+  {
+    "country": "Andorra",
+    "city": "Andorra la Vella",
+    "endpoint": "ad-leu.prod.surfshark.com:51820",
+    "pubKey": "alv2SqjLM8Aw5yz/7pGZydfALPfYzgwDquAe5dWX12s="
+  },
+  {
+    "country": "Argentina",
+    "city": "Buenos Aires",
+    "endpoint": "ar-bua.prod.surfshark.com:51820",
+    "pubKey": "JeHzAD4ZNXnFw4TdG37pi8bHPy6CQQqeRXK09pMHVyU="
+  },
+  {
+    "country": "Armenia",
+    "city": "Yerevan",
+    "endpoint": "am-evn.prod.surfshark.com:51820",
+    "pubKey": "B+aSYrw7JSq7b60uK0nrMQGCiJ48QwiUp/aoRpYX2lU="
+  },
+  {
+    "country": "Australia",
+    "city": "Adelaide",
+    "endpoint": "au-adl.prod.surfshark.com:51820",
+    "pubKey": "J7N3UrHc71+LJkn8gsI9Ja8YcpTXT8fV789LLKnIXAY="
+  },
+  {
+    "country": "Australia",
+    "city": "Brisbane",
+    "endpoint": "au-bne.prod.surfshark.com:51820",
+    "pubKey": "Jo+U6dj+eAf8zdtoMqyYPmrJNVQj82mipH0mEDyfUXo="
+  },
+  {
+    "country": "Australia",
+    "city": "Melbourne",
+    "endpoint": "au-mel.prod.surfshark.com:51820",
+    "pubKey": "yYX9yLjHOSWVAsaujcIVWAxF9wYMmHupG1RtJk+u21o="
+  },
+  {
+    "country": "Australia",
+    "city": "Perth",
+    "endpoint": "au-per.prod.surfshark.com:51820",
+    "pubKey": "oD0TqnE/ETIpvMO8DZObjdLVRf3jhzG7qV5GtM8/Yik="
+  },
+  {
+    "country": "Australia",
+    "city": "Sydney",
+    "endpoint": "au-syd.prod.surfshark.com:51820",
+    "pubKey": "Y5KM9kHdM0upMsIJWUQquOY1RgkWX69AHw/Dl5KyIk4="
+  },
+  {
+    "country": "Austria",
+    "city": "Vienna",
+    "endpoint": "at-vie.prod.surfshark.com:51820",
+    "pubKey": "dPZe8Jq3Hu0k07MDk+Y4+AS2XHSLYalyg91TSFXRYEA="
+  },
+  {
+    "country": "Azerbaijan",
+    "city": "Baku",
+    "endpoint": "az-bak.prod.surfshark.com:51820",
+    "pubKey": "pvWYTFxIpqo25NGTertIIWnccS/sUQ6fIkqd8XJYzEI="
+  },
+  {
+    "country": "Bahamas",
+    "city": "Bahamas",
+    "endpoint": "bs-nas.prod.surfshark.com:51820",
+    "pubKey": "uM3cUZiQ46nRLALqOQfBz2cqg+RyR/OIHH0Xvwf9wHY="
+  },
+  {
+    "country": "Bangladesh",
+    "city": "Dhaka",
+    "endpoint": "bd-dac.prod.surfshark.com:51820",
+    "pubKey": "6tOduT4iNbZyqKNzsSgDe/ckziO6101NPZwrnY5WpTk="
+  },
+  {
+    "country": "Belgium",
+    "city": "Antwerp",
+    "endpoint": "be-anr.prod.surfshark.com:51820",
+    "pubKey": "cTDaqf4qOaNGUbzt/qMRUCcOzL9wknQtG00po/bBt3Y="
+  },
+  {
+    "country": "Belgium",
+    "city": "Brussels",
+    "endpoint": "be-bru.prod.surfshark.com:51820",
+    "pubKey": "9wZOjtwuKEc0GBcvc3xJQ4Kjo8G3EMXu6zJRzbanOjc="
+  },
+  {
+    "country": "Belize",
+    "city": "Belmopan",
+    "endpoint": "bz-blp.prod.surfshark.com:51820",
+    "pubKey": "zcxA9gW+ism40rUoF5B4UPV655FLymJ1n4t0WogtZkU="
+  },
+  {
+    "country": "Bhutan",
+    "city": "Thimphu",
+    "endpoint": "bt-pbh.prod.surfshark.com:51820",
+    "pubKey": "R/lGzro0Z8nbQWDVRJbfscimcUvbSrc/raIvXwfDoV4="
+  },
+  {
+    "country": "Bolivia",
+    "city": "Sucre",
+    "endpoint": "bo-sre.prod.surfshark.com:51820",
+    "pubKey": "YTVk+CUVWELH18qftzEURb8JJfLHfmIMewcx0p8hkT0="
+  },
+  {
+    "country": "Bosnia and Herzegovina",
+    "city": "Sarajevo",
+    "endpoint": "ba-sjj.prod.surfshark.com:51820",
+    "pubKey": "hsm/ps/uxcsVNzT3OmV/l7ZWv+TRIS+IM+N6/nTymkw="
+  },
+  {
+    "country": "Brazil",
+    "city": "Sao Paulo",
+    "endpoint": "br-sao.prod.surfshark.com:51820",
+    "pubKey": "IFTVXxhLEqVgZI/JGOPRtmrNUQW1DNljeBe8Ys7v90A="
+  },
+  {
+    "country": "Brunei",
+    "city": "Begawan",
+    "endpoint": "bn-bwn.prod.surfshark.com:51820",
+    "pubKey": "QE7hpHqVYWqohTmOnmYtKjUv4b6Bb8S2b9AF0EFl638="
+  },
+  {
+    "country": "Bulgaria",
+    "city": "Sofia",
+    "endpoint": "bg-sof.prod.surfshark.com:51820",
+    "pubKey": "LQFiCiZcPEoYasKRLbCfXp2fYYsj8wiMr/L9u6hYqSo="
+  },
+  {
+    "country": "Cambodia",
+    "city": "Phnom Penh",
+    "endpoint": "kh-pnh.prod.surfshark.com:51820",
+    "pubKey": "z2Ik8BG6XgosyYE/O4Vz4kiPTZyoWSlJvZtFeFlNclI="
+  },
+  {
+    "country": "Canada",
+    "city": "Montreal",
+    "endpoint": "ca-mon.prod.surfshark.com:51820",
+    "pubKey": "pB//7qgQ/TQyIMQWKO9GvUfJNYCfVZYwjF2nXPGIEX8="
+  },
+  {
+    "country": "Canada",
+    "city": "Toronto",
+    "endpoint": "ca-tor.prod.surfshark.com:51820",
+    "pubKey": "W9bzkcL3fiV64vDpB4pbrz8QafNn3y5P9Yc/kQvy4TA="
+  },
+  {
+    "country": "Canada",
+    "city": "Vancouver",
+    "endpoint": "ca-van.prod.surfshark.com:51820",
+    "pubKey": "o4HezxSsbNqJFJZj+VBw/QXFLpfNo7PZu8xe7H2hTw0="
+  },
+  {
+    "country": "Chile",
+    "city": "Santiago",
+    "endpoint": "cl-san.prod.surfshark.com:51820",
+    "pubKey": "FdTRnh0g+FYFPj5UURQIcDbygd+2gMRrslErfmZxdDo="
+  },
+  {
+    "country": "Colombia",
+    "city": "Bogota",
+    "endpoint": "co-bog.prod.surfshark.com:51820",
+    "pubKey": "lLqqxZuCTtIpBjgZJYWzPQn/7st24iVpJN+/xS7jogs="
+  },
+  {
+    "country": "Costa Rica",
+    "city": "San Jose",
+    "endpoint": "cr-sjn.prod.surfshark.com:51820",
+    "pubKey": "HPggZ80tXf9TpiZzy8xih7PIWjexg4Kyg3lzUGXoDHU="
+  },
+  {
+    "country": "Croatia",
+    "city": "Zagreb",
+    "endpoint": "hr-zag.prod.surfshark.com:51820",
+    "pubKey": "nIQmC5T4H0HX4yA2u/Z5rrbLQDAOLA+kFCdt8S94xXg="
+  },
+  {
+    "country": "Cyprus",
+    "city": "Nicosia",
+    "endpoint": "cy-nic.prod.surfshark.com:51820",
+    "pubKey": "kEAQgNChxGgrzoKPpCPFJKh0L1/5rXIq08KSY4g26zY="
+  },
+  {
+    "country": "Czech Republic",
+    "city": "Prague",
+    "endpoint": "cz-prg.prod.surfshark.com:51820",
+    "pubKey": "c1bfP+OBTj6WUe8NDH8d6nDTwpQicopfdkHFx3BIaSk="
+  },
+  {
+    "country": "Denmark",
+    "city": "Copenhagen",
+    "endpoint": "dk-cph.prod.surfshark.com:51820",
+    "pubKey": "peDjRPEdHHmo0hGootZ9f+MQCEXmziFkLhMTl2PeXRM="
+  },
+  {
+    "country": "Ecuador",
+    "city": "Quito",
+    "endpoint": "ec-uio.prod.surfshark.com:51820",
+    "pubKey": "LErFIOc3YBK1khnmwV+a6fBbYff2OS3h+wnIuOKZQTY="
+  },
+  {
+    "country": "Egypt",
+    "city": "Cairo",
+    "endpoint": "eg-cai.prod.surfshark.com:51820",
+    "pubKey": "EKaIyCUV8aqCtRkV6jfkU1IicE5ZaU2RC4VKAdgjOyA="
+  },
+  {
+    "country": "Estonia",
+    "city": "Tallinn",
+    "endpoint": "ee-tll.prod.surfshark.com:51820",
+    "pubKey": "CsdrT+WfcMRPhrOWgZeHj9DQiQtJfYFci94K5ztjr2E="
+  },
+  {
+    "country": "Finland",
+    "city": "Helsinki",
+    "endpoint": "fi-hel.prod.surfshark.com:51820",
+    "pubKey": "+nv/Z8I2VS0eRdZwkpQW3U9RmsboTz2MUF94jVg5w10="
+  },
+  {
+    "country": "France",
+    "city": "Bordeaux",
+    "endpoint": "fr-bod.prod.surfshark.com:51820",
+    "pubKey": "ArE5eVIEOPellzFlGK/oOcHCGnB+AAv0Un4C100COmw="
+  },
+  {
+    "country": "France",
+    "city": "Marseille",
+    "endpoint": "fr-mrs.prod.surfshark.com:51820",
+    "pubKey": "QYa3ZFLwWAHKiJzOcbM73K7KBE0tdJYuirbGb+uH0H0="
+  },
+  {
+    "country": "France",
+    "city": "Paris",
+    "endpoint": "fr-par.prod.surfshark.com:51820",
+    "pubKey": "AsvLuvKKADdc67aA/vHA3vb61S6YnGGx2Pd4aP4wal8="
+  },
+  {
+    "country": "Georgia",
+    "city": "Tbilisi",
+    "endpoint": "ge-tbs.prod.surfshark.com:51820",
+    "pubKey": "L79E4IoaVZBXOyoMM82TvUIbiKlloRbUnT8R2Cl3PVM="
+  },
+  {
+    "country": "Germany",
+    "city": "Berlin",
+    "endpoint": "de-ber.prod.surfshark.com:51820",
+    "pubKey": "d3ldwEjnFcbLwD1o8uC5xC3DaSNek8DGeTpOb/h/IE4="
+  },
+  {
+    "country": "Germany",
+    "city": "Frankfurt am Main",
+    "endpoint": "de-fra.prod.surfshark.com:51820",
+    "pubKey": "fJDA+OA6jzQxfRcoHfC27xz7m3C8/590fRjpntzSpGo="
+  },
+  {
+    "country": "Ghana",
+    "city": "Accra",
+    "endpoint": "gh-acc.prod.surfshark.com:51820",
+    "pubKey": "UH3qS1ysggFDEBP8Hzgz19Sw0T+SKxFldkatHRKMqBY="
+  },
+  {
+    "country": "Greece",
+    "city": "Athens",
+    "endpoint": "gr-ath.prod.surfshark.com:51820",
+    "pubKey": "bXnjQGLhuauvBMg51YIAhwX40YqNL2ImyEub5DpHaBk="
+  },
+  {
+    "country": "Greenland",
+    "city": "Nuuk",
+    "endpoint": "gl-goh.prod.surfshark.com:51820",
+    "pubKey": "zPg3ZJ7OsztQ0CRSSvH5o2KVL1DYgDGW65DFwLsYwyw="
+  },
+  {
+    "country": "Hong Kong",
+    "city": "Hong Kong",
+    "endpoint": "hk-hkg.prod.surfshark.com:51820",
+    "pubKey": "JYHdktdtuM7inbtsxRKSDpnBVTWQ5+QLZ/cWWmf4VRg="
+  },
+  {
+    "country": "Hungary",
+    "city": "Budapest",
+    "endpoint": "hu-bud.prod.surfshark.com:51820",
+    "pubKey": "Pk3+iZNP0uWkDTSmEHlUeSA3WyiFXLXgYgAQ5wNyIBk="
+  },
+  {
+    "country": "Iceland",
+    "city": "Reykjavik",
+    "endpoint": "is-rkv.prod.surfshark.com:51820",
+    "pubKey": "d0m2sIa0JGcxCBvoWDU77SjmPoiWI/oKoX1TL2f2fTA="
+  },
+  {
+    "country": "India",
+    "city": "Delhi",
+    "endpoint": "in-del.prod.surfshark.com:51820",
+    "pubKey": "+dmGrWPM9NI3vQkZ9E7hMRKAJKYzd3YMXGq10sjbN0A="
+  },
+  {
+    "country": "India",
+    "city": "Mumbai",
+    "endpoint": "in-mum.prod.surfshark.com:51820",
+    "pubKey": "nZBv1nNW6HSvjybgCO9TNHI1pkX+C6GjyAHUtkJRjRI="
+  },
+  {
+    "country": "Indonesia",
+    "city": "Jakarta",
+    "endpoint": "id-jak.prod.surfshark.com:51820",
+    "pubKey": "qyghLDfpfyparp0M52OVcmhKckayOvbRO2DDLkgJqyk="
+  },
+  {
+    "country": "Ireland",
+    "city": "Dublin",
+    "endpoint": "ie-dub.prod.surfshark.com:51820",
+    "pubKey": "TjYxodFNdGlefxnWqe9vWWJHnz3meYWWhiIJyU8rgg8="
+  },
+  {
+    "country": "Isle of Man",
+    "city": "Douglas",
+    "endpoint": "im-iom.prod.surfshark.com:51820",
+    "pubKey": "PQKiTkyLs9+rvDkmhnHYBKUZAZwBpZYIZ7/mefvYKko="
+  },
+  {
+    "country": "Israel",
+    "city": "Tel Aviv",
+    "endpoint": "il-tlv.prod.surfshark.com:51820",
+    "pubKey": "ZEG2fUrtohnVePblUlDM6wyyeTobzsABnMjTTFmqNUE="
+  },
+  {
+    "country": "Italy",
+    "city": "Milan",
+    "endpoint": "it-mil.prod.surfshark.com:51820",
+    "pubKey": "vIMHzH5FHdVkrhOOc0u/FySVhumaLC3XUk39Wk34LnE="
+  },
+  {
+    "country": "Italy",
+    "city": "Rome",
+    "endpoint": "it-rom.prod.surfshark.com:51820",
+    "pubKey": "fqxSeDr7n249iywruwLMwkV3r36svPT1tLf9TJOTFAw="
+  },
+  {
+    "country": "Japan",
+    "city": "Tokyo",
+    "endpoint": "jp-tok.prod.surfshark.com:51820",
+    "pubKey": "YJSjrc/WWOjQUyUi4iYcHb7LsWWoCY+2fK8/8VtC/BY="
+  },
+  {
+    "country": "Kazakhstan",
+    "city": "Oral",
+    "endpoint": "kz-ura.prod.surfshark.com:51820",
+    "pubKey": "c8SPrUWVMjSm3xdZRF4eg57sdEo2TFmBDVKP+A+quHM="
+  },
+  {
+    "country": "Laos",
+    "city": "Vientiane",
+    "endpoint": "la-vte.prod.surfshark.com:51820",
+    "pubKey": "yIlpSftvkSE2+T0uqxWl9HeQSrmPg+HkyvGLi55UqG0="
+  },
+  {
+    "country": "Latvia",
+    "city": "Riga",
+    "endpoint": "lv-rig.prod.surfshark.com:51820",
+    "pubKey": "EmghYf9rIpwOQ0uIjIxgCXs/WwHJthNvPIv5iKseE3A="
+  },
+  {
+    "country": "Liechtenstein",
+    "city": "Vaduz",
+    "endpoint": "li-qvu.prod.surfshark.com:51820",
+    "pubKey": "ZSCz5PqrLnu+Eu9wjiMDLscEHTBcfD0H3CGz0i8pXxc="
+  },
+  {
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "endpoint": "lt-vno.prod.surfshark.com:51820",
+    "pubKey": "pC7xJD56uFFJ7qHpe3XvXXhjwZcoMco09ySHOg4h+iA="
+  },
+  {
+    "country": "Luxembourg",
+    "city": "Luxembourg",
+    "endpoint": "lu-ste.prod.surfshark.com:51820",
+    "pubKey": "68JVBL/M2AYQ9gYHtcpmZ6Pl+ayhJjTL2sr6Ej1VEFg="
+  },
+  {
+    "country": "Macau",
+    "city": "Macao",
+    "endpoint": "mo-mfm.prod.surfshark.com:51820",
+    "pubKey": "uMD8IFggqtF0ZbviJJFMQFhR3R52mVqhoJmKPt+aACs="
+  },
+  {
+    "country": "Malaysia",
+    "city": "Kuala Lumpur",
+    "endpoint": "my-kul.prod.surfshark.com:51820",
+    "pubKey": "AS84LXlJfgBwGHc70MvtGRxsMqNNucZ2pNOBayJUm04="
+  },
+  {
+    "country": "Malta",
+    "city": "Valletta",
+    "endpoint": "mt-mla.prod.surfshark.com:51820",
+    "pubKey": "c9EuAnWYvGUyFrzrV70Fph0onkFv2xe3Bc0gTCFuKRw="
+  },
+  {
+    "country": "Marocco",
+    "city": "Rabat",
+    "endpoint": "ma-rab.prod.surfshark.com:51820",
+    "pubKey": "Tl7KINtNnar9fVQD8LG2dswOEqSKmUP9ioimCjo6jHc="
+  },
+  {
+    "country": "Mexico",
+    "city": "Queretaro",
+    "endpoint": "mx-qro.prod.surfshark.com:51820",
+    "pubKey": "6C8O3L/Li0JOO5aWvL6PrciiZOOaRBtWmempOUENLQs="
+  },
+  {
+    "country": "Moldova",
+    "city": "Chisinau",
+    "endpoint": "md-chi.prod.surfshark.com:51820",
+    "pubKey": "4Exn42t337sxoBzYHxgmDBNq+AhTYz6nvEj98TWY50Y="
+  },
+  {
+    "country": "Monaco",
+    "city": "Monte Carlo",
+    "endpoint": "mc-mcm.prod.surfshark.com:51820",
+    "pubKey": "rj9PNit3SCy52Knw0QmHUfN2W59nB4oMOtmOZq1q/Hc="
+  },
+  {
+    "country": "Mongolia",
+    "city": "Ulaanbaatar",
+    "endpoint": "mn-uln.prod.surfshark.com:51820",
+    "pubKey": "3nLHy4uBd2nBUDuAuR6AM58yHLiX2CAXg8kdgEr6tV4="
+  },
+  {
+    "country": "Montenegro",
+    "city": "Podgorica",
+    "endpoint": "me-tgd.prod.surfshark.com:51820",
+    "pubKey": "Jhiez1pdO7tqUX0OmUubd9SPfvUc/ypSLRzWiyr3SRM="
+  },
+  {
+    "country": "Myanmar",
+    "city": "Naypyidaw",
+    "endpoint": "mm-nyt.prod.surfshark.com:51820",
+    "pubKey": "tehGZzcmdK59x99I9dbfuWOHSxBdPsz5lB+uAoT75kE="
+  },
+  {
+    "country": "Nepal",
+    "city": "Kathmandu",
+    "endpoint": "np-ktm.prod.surfshark.com:51820",
+    "pubKey": "UKMTmY99xrUwchQNucd1SW6CmIFsDH1JpxQStRWA1V4="
+  },
+  {
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "endpoint": "nl-ams.prod.surfshark.com:51820",
+    "pubKey": "Lxg3jAOKcBA9tGBtB6vEWMFl5LUEB6AwOpuniYn1cig="
+  },
+  {
+    "country": "New Zealand",
+    "city": "Auckland",
+    "endpoint": "nz-akl.prod.surfshark.com:51820",
+    "pubKey": "xv8P19y0m9ojrLelCaPzGtaVv7tlPzLgZxvAD7lpYDg="
+  },
+  {
+    "country": "Nigeria",
+    "city": "Lagos",
+    "endpoint": "ng-lag.prod.surfshark.com:51820",
+    "pubKey": "mMmsmMyqtASb4V42H5nxyD8BgauWrNhCCZdBHCsbC00="
+  },
+  {
+    "country": "North Macedonia",
+    "city": "Skopje",
+    "endpoint": "mk-skp.prod.surfshark.com:51820",
+    "pubKey": "dZNq48noPkey9rwSbAU+masbafpDSaAmtAMaP+gzLxA="
+  },
+  {
+    "country": "Norway",
+    "city": "Oslo",
+    "endpoint": "no-osl.prod.surfshark.com:51820",
+    "pubKey": "pXfZi2vsdd88qrnqh+bwqHG4IYD42pj3T1wCm3PIGmw="
+  },
+  {
+    "country": "Pakistan",
+    "city": "Karachi",
+    "endpoint": "pk-khi.prod.surfshark.com:51820",
+    "pubKey": "DLb7wUFYkOcx5iiNxbNquP5rH+EJdiQfrdFaQoojskU="
+  },
+  {
+    "country": "Panama",
+    "city": "Panama",
+    "endpoint": "pa-pac.prod.surfshark.com:51820",
+    "pubKey": "9L1tbh/IHrrtImJnuEsVc1eN7xChlLzS6nCMaVyH/iQ="
+  },
+  {
+    "country": "Paraguay",
+    "city": "Asunci\u00f3n",
+    "endpoint": "py-asu.prod.surfshark.com:51820",
+    "pubKey": "vY6iX5ivkYIrIADMPQMtzR8onU7UYlB52XH5loAeDn0="
+  },
+  {
+    "country": "Peru",
+    "city": "Lima",
+    "endpoint": "pe-lim.prod.surfshark.com:51820",
+    "pubKey": "mR3GelqqkAL6IKKbzcdxJm3f3uyVNxdzCCtTcLT+wUc="
+  },
+  {
+    "country": "Philippines",
+    "city": "Manila",
+    "endpoint": "ph-mnl.prod.surfshark.com:51820",
+    "pubKey": "utXZy1ELBSQKa6s9/K/W4sV11Jod6sSLoikKqKRPyQs="
+  },
+  {
+    "country": "Poland",
+    "city": "Gdansk",
+    "endpoint": "pl-gdn.prod.surfshark.com:51820",
+    "pubKey": "4lZhg/fKDCRLjvULGntx21qfebzQv5TJjZ1pc82sUgc="
+  },
+  {
+    "country": "Poland",
+    "city": "Warsaw",
+    "endpoint": "pl-waw.prod.surfshark.com:51820",
+    "pubKey": "vBa3HK7QXietG64rHRLm085VMS2cAX2paeAaphB/SEU="
+  },
+  {
+    "country": "Portugal",
+    "city": "Lisbon",
+    "endpoint": "pt-lis.prod.surfshark.com:51820",
+    "pubKey": "JgYlpt7jFh0FV2QO0QQ3yFfsnqikUq977V3cObFGTQ4="
+  },
+  {
+    "country": "Portugal",
+    "city": "Porto",
+    "endpoint": "pt-opo.prod.surfshark.com:51820",
+    "pubKey": "F24iHyEt6YSSaUry/nQAfIEOwXncH0RHUtkte0znvkE="
+  },
+  {
+    "country": "Puerto Rico",
+    "city": "San Juan",
+    "endpoint": "pr-sju.prod.surfshark.com:51820",
+    "pubKey": "aShaCPgmFn4fHK6wY7pVEIirZ3J961+93d3Qicz6swE="
+  },
+  {
+    "country": "Romania",
+    "city": "Bucharest",
+    "endpoint": "ro-buc.prod.surfshark.com:51820",
+    "pubKey": "uRT3uSAUwvm7Rp+s3n5V9JibsKHKAZ/8+SU3psG8QxI="
+  },
+  {
+    "country": "Saudi Arabia",
+    "city": "Riyadh",
+    "endpoint": "sa-ruh.prod.surfshark.com:51820",
+    "pubKey": "quiGeZeYE8T2FBBfz3mGikY9m7cTTyA0q/ROFakbfwU="
+  },
+  {
+    "country": "Serbia",
+    "city": "Belgrade",
+    "endpoint": "rs-beg.prod.surfshark.com:51820",
+    "pubKey": "A3vmr6/umw5sP8anxNyipgi5oEnOnZdqB1K/cbQpMiI="
+  },
+  {
+    "country": "Singapore",
+    "city": "Singapore",
+    "endpoint": "sg-sng.prod.surfshark.com:51820",
+    "pubKey": "MGfgkhJsMVMTO33h1wr76+z6gQr/93VcGdClfbaPsnU="
+  },
+  {
+    "country": "Slovakia",
+    "city": "Bratislava",
+    "endpoint": "sk-bts.prod.surfshark.com:51820",
+    "pubKey": "T5b7+uwUFqN5r1WsfBXURpSnYCYRLFAVreKkIQHGOlw="
+  },
+  {
+    "country": "Slovenia",
+    "city": "Ljubljana",
+    "endpoint": "si-lju.prod.surfshark.com:51820",
+    "pubKey": "yPdmxOfzm06fotkt/dlaAiyxWPaWfCuDPaUljNx+c38="
+  },
+  {
+    "country": "South Africa",
+    "city": "Johannesburg",
+    "endpoint": "za-jnb.prod.surfshark.com:51820",
+    "pubKey": "Wj/fSWxNLs1igL1uTRp4zLFNohe4S1wqNTYRHevthUA="
+  },
+  {
+    "country": "South Korea",
+    "city": "Seoul",
+    "endpoint": "kr-seo.prod.surfshark.com:51820",
+    "pubKey": "bD/m2mdKxJXG2wTkLsmWpiW8xZwkDdrrrwC44auOhQg="
+  },
+  {
+    "country": "Spain",
+    "city": "Barcelona",
+    "endpoint": "es-bcn.prod.surfshark.com:51820",
+    "pubKey": "3EC6079YDlzJKcNLdrm/t+JLG8hV3wPpoWE4MypjYnw="
+  },
+  {
+    "country": "Spain",
+    "city": "Madrid",
+    "endpoint": "es-mad.prod.surfshark.com:51820",
+    "pubKey": "a30vOQfjwPzjRxGNi2dvSAMdaPHEYatR84cUjXKOwls="
+  },
+  {
+    "country": "Spain",
+    "city": "Valencia",
+    "endpoint": "es-vlc.prod.surfshark.com:51820",
+    "pubKey": "TlYKGW07dqFfedNfAnVIPv2WPfC54h96se+dcIDuNhU="
+  },
+  {
+    "country": "Sri Lanka",
+    "city": "Colombo",
+    "endpoint": "lk-cmb.prod.surfshark.com:51820",
+    "pubKey": "+8TxSpyyEGiZK6d/5V+94Zc7nxOV3F1ag7sM6AN86GY="
+  },
+  {
+    "country": "Sweden",
+    "city": "Stockholm",
+    "endpoint": "se-sto.prod.surfshark.com:51820",
+    "pubKey": "oUFRc+2emXgogDVWnJF4RAzr72PyafCzMVeQOgG92lY="
+  },
+  {
+    "country": "Switzerland",
+    "city": "Zurich",
+    "endpoint": "ch-zur.prod.surfshark.com:51820",
+    "pubKey": "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs="
+  },
+  {
+    "country": "Taiwan",
+    "city": "Taipei",
+    "endpoint": "tw-tai.prod.surfshark.com:51820",
+    "pubKey": "P0vaGUOUE7V5bbGOYY2WgQeZnTZEHvIr+dfebU7W4Ao="
+  },
+  {
+    "country": "Thailand",
+    "city": "Bangkok",
+    "endpoint": "th-bkk.prod.surfshark.com:51820",
+    "pubKey": "OoFY46j/w4uQFyFu/OQ/h3x+ymJ1DJ4UR1fwGNxOxk0="
+  },
+  {
+    "country": "Turkey",
+    "city": "Istanbul",
+    "endpoint": "tr-ist.prod.surfshark.com:51820",
+    "pubKey": "sF/TlxU9XaDN3QQBT/lu2Pw9qpD3XpDqLBfInBtff2A="
+  },
+  {
+    "country": "Ukraine",
+    "city": "Kyiv",
+    "endpoint": "ua-iev.prod.surfshark.com:51820",
+    "pubKey": "wy+PhWBP715KfBrsQR4P3JUalYc9a77FmZWQinwYLmo="
+  },
+  {
+    "country": "United Arab Emirates",
+    "city": "Dubai",
+    "endpoint": "ae-dub.prod.surfshark.com:51820",
+    "pubKey": "6dZGkg0iAMgQuOCGknAgBAqDEeJeBQ4Of5eblO4aNC8="
+  },
+  {
+    "country": "United Kingdom",
+    "city": "Edinburgh",
+    "endpoint": "uk-edi.prod.surfshark.com:51820",
+    "pubKey": "f0fMBZNOzoTDfU28EKhtvYy3keiG5Jkh4fLBov1DI0U="
+  },
+  {
+    "country": "United Kingdom",
+    "city": "Glasgow",
+    "endpoint": "uk-gla.prod.surfshark.com:51820",
+    "pubKey": "QiFHJ7wtwhXEztRqBjGrFphsFXtlAFWwMDgruFKq0XE="
+  },
+  {
+    "country": "United Kingdom",
+    "city": "London",
+    "endpoint": "uk-lon.prod.surfshark.com:51820",
+    "pubKey": "iBJRXLZwXuWWrOZE1ZrAXEKMgV/z0WjG0Tks5rnWLBI="
+  },
+  {
+    "country": "United Kingdom",
+    "city": "Manchester",
+    "endpoint": "uk-man.prod.surfshark.com:51820",
+    "pubKey": "9R8He1cP8Laf5MT58FcaEYtPW/qnN3M9MQThIXOIvHs="
+  },
+  {
+    "country": "United States",
+    "city": "Ashburn",
+    "endpoint": "us-ash.prod.surfshark.com:51820",
+    "pubKey": "9ef2f8mXHnAxx06lx4OxhtzASfJgv6YfEimuVyef6QE="
+  },
+  {
+    "country": "United States",
+    "city": "Atlanta",
+    "endpoint": "us-atl.prod.surfshark.com:51820",
+    "pubKey": "SgciXll6wGQhcyxPUdp0V0z6WwN9P3fqDoeh3N3xNjc="
+  },
+  {
+    "country": "United States",
+    "city": "Bend",
+    "endpoint": "us-bdn.prod.surfshark.com:51820",
+    "pubKey": "YaxEFQHtwF/EGvf5s/aLlX5Jr0djKTV5oNcAcIwAz0E="
+  },
+  {
+    "country": "United States",
+    "city": "Boston",
+    "endpoint": "us-bos.prod.surfshark.com:51820",
+    "pubKey": "V0vpMcp0/586Y/q1EzW9PhM45JhypnCYgmrP0rzDEVw="
+  },
+  {
+    "country": "United States",
+    "city": "Buffalo",
+    "endpoint": "us-buf.prod.surfshark.com:51820",
+    "pubKey": "156ry2sOmv+I9KYTy2jR4/BLTnPT+Qn+DoCNqOon1ys="
+  },
+  {
+    "country": "United States",
+    "city": "Charlotte",
+    "endpoint": "us-clt.prod.surfshark.com:51820",
+    "pubKey": "tLnNDtNUOScxIU6t70ujsx1erSWOj9hWkWJD5iJwPwc="
+  },
+  {
+    "country": "United States",
+    "city": "Chicago",
+    "endpoint": "us-chi.prod.surfshark.com:51820",
+    "pubKey": "DpMfulanF/MVHmt3AX4dqLqcyE0dpPqYBjDlWMaUI00="
+  },
+  {
+    "country": "United States",
+    "city": "Dallas",
+    "endpoint": "us-dal.prod.surfshark.com:51820",
+    "pubKey": "0iwHQpV+rsOg38ogv4g4XMLJa51YqWY/yKWR9UEUMDk="
+  },
+  {
+    "country": "United States",
+    "city": "Denver",
+    "endpoint": "us-den.prod.surfshark.com:51820",
+    "pubKey": "AnRLZKBwCfuGFZfoa3dsdjpcpvgFsQhASmjHXhIJLgM="
+  },
+  {
+    "country": "United States",
+    "city": "Detroit",
+    "endpoint": "us-dtw.prod.surfshark.com:51820",
+    "pubKey": "WFhlLK8H1pRzgMggza5NhBMjIcGhmsCqjR8+yFRfXhg="
+  },
+  {
+    "country": "United States",
+    "city": "Houston",
+    "endpoint": "us-hou.prod.surfshark.com:51820",
+    "pubKey": "1g84fGxVJokKXdMYEJKjN6/opyYN/YSHmrMyw0v6VnM="
+  },
+  {
+    "country": "United States",
+    "city": "Kansas City",
+    "endpoint": "us-kan.prod.surfshark.com:51820",
+    "pubKey": "SWN/jzfK69ucEUqQyPejKb9wWxwUoOgG37YlgeCmvjg="
+  },
+  {
+    "country": "United States",
+    "city": "Las Vegas",
+    "endpoint": "us-las.prod.surfshark.com:51820",
+    "pubKey": "Nw5CG5BOvqb8GXVEKLOo7v3gGvP7WaUYlJT++c3c31g="
+  },
+  {
+    "country": "United States",
+    "city": "Latham",
+    "endpoint": "us-ltm.prod.surfshark.com:51820",
+    "pubKey": "Smruh1SmMqi7CecjV/+yI4Sy62gpAr+Uddq+9K6iLB0="
+  },
+  {
+    "country": "United States",
+    "city": "Los Angeles",
+    "endpoint": "us-lax.prod.surfshark.com:51820",
+    "pubKey": "m+L7BVQWDwU2TxjfspMRLkRctvmo7fOkd+eVk6KC5lM="
+  },
+  {
+    "country": "United States",
+    "city": "Miami",
+    "endpoint": "us-mia.prod.surfshark.com:51820",
+    "pubKey": "KvJ/jtWb8BsBI85OcZnOIJu9kfh12mCMR4cejWFpDCc="
+  },
+  {
+    "country": "United States",
+    "city": "Nashville",
+    "endpoint": "us-bna.prod.surfshark.com:51820",
+    "pubKey": "BNaDm2NLUySO0sNiCxaYkE5KS1i6KgshxVZudNli4jI="
+  },
+  {
+    "country": "United States",
+    "city": "New York",
+    "endpoint": "us-nyc.prod.surfshark.com:51820",
+    "pubKey": "rhuoCmHdyYrh0zW3J0YXZK4aN3It7DD26TXlACuWnwU="
+  },
+  {
+    "country": "United States",
+    "city": "Omaha",
+    "endpoint": "us-oma.prod.surfshark.com:51820",
+    "pubKey": "7Z8FJEl+BtQuAyNuUWIZxHGrQP7rumhFlIq4azHvCgs="
+  },
+  {
+    "country": "United States",
+    "city": "Phoenix",
+    "endpoint": "us-phx.prod.surfshark.com:51820",
+    "pubKey": "HDCyeD2+lw6KHVMu7Opkt4V4ikYZHzQNWmwklBMb4Ac="
+  },
+  {
+    "country": "United States",
+    "city": "Salt Lake City",
+    "endpoint": "us-slc.prod.surfshark.com:51820",
+    "pubKey": "jxotWPy1jNzKzjqSqg6KkWnoOsp/FbrTK4+j9gluSFA="
+  },
+  {
+    "country": "United States",
+    "city": "San Francisco",
+    "endpoint": "us-sfo.prod.surfshark.com:51820",
+    "pubKey": "7SpGSSI78hf8jy689ec5Ql0/Gsq0LLHDmjEFsGUWl1k="
+  },
+  {
+    "country": "United States",
+    "city": "San Jose",
+    "endpoint": "us-sjc.prod.surfshark.com:51820",
+    "pubKey": "sDDS1f/+IqVljMN7GzMFeAbNescQUTLIt0xio0W61Q0="
+  },
+  {
+    "country": "United States",
+    "city": "Seattle",
+    "endpoint": "us-sea.prod.surfshark.com:51820",
+    "pubKey": "SpMH/p90bg9ZAG6V2DWJQ9csWPVnKcDVppIp9Xul5G8="
+  },
+  {
+    "country": "Uruguay",
+    "city": "Montevideo",
+    "endpoint": "uy-mvd.prod.surfshark.com:51820",
+    "pubKey": "N4HQsZ7deamq3itB5Pmj9MhtjjDNYKY4YfiUFkfWlBo="
+  },
+  {
+    "country": "Uzbekistan",
+    "city": "Tashkent",
+    "endpoint": "uz-tas.prod.surfshark.com:51820",
+    "pubKey": "CX6N+j5AfK2LVl3tfAop6/oXFb15tCnuDbPy7CbrKXw="
+  },
+  {
+    "country": "Venezuela",
+    "city": "Caracas",
+    "endpoint": "ve-car.prod.surfshark.com:51820",
+    "pubKey": "fK7yvbWdPrpginzYzhQu7IT6J+Mf18/K+VNrwyXqriU="
+  },
+  {
+    "country": "Vietnam",
+    "city": "Ho Chi Minh City",
+    "endpoint": "vn-hcm.prod.surfshark.com:51820",
+    "pubKey": "Mioou38fh5H+3LWMpitLOWT3JaDGg2gXxqjl2eXkPFU="
+  }
+]
