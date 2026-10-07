@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Offline 2FA Authenticator — Cyberpunk Edition</title>
+    <style>
+        :root {
+            --bg-dark: #070f1a;
+            --bg-card: #0d1b2a;
+            --bg-card-hover: #112338;
+            --bg-input: #081320;
+            --border-color: #1a3a5c;
+            --cyan: #00e5ff;
+            --green: #00e676;
+            --amber: #ffd600;
+            --red: #ff5252;
+            --text-primary: #e0f2fe;
+            --text-muted: #78909c;
+            --font-mono: 'Consolas', 'Fira Code', 'Courier New', monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 540px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 26px;
+            filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.4));
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00e5ff, #00e676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .badge-offline {
+            background: #00331f;
+            border: 1px solid #00874a;
+            color: var(--green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+        }
+
+        /* INPUT CARD */
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .input-text {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .input-text:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        .sanitizer-box {
+            display: none;
+            background: rgba(255, 214, 0, 0.08);
+            border: 1px solid rgba(255, 214, 0, 0.4);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-top: 8px;
+            font-size: 11.5px;
+            color: var(--amber);
+        }
+
+        .btn-autofix {
+            background: #4d3a00;
+            border: 1px solid #ffc107;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-top: 6px;
+            display: inline-block;
+        }
+
+        /* CODE DISPLAY BOX */
+        .code-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .code-display {
+            font-family: var(--font-mono);
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: var(--cyan);
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+            user-select: all;
+            margin-bottom: 8px;
+        }
+
+        .code-display.invalid {
+            font-size: 20px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* CIRCULAR TIMER */
+        .timer-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .svg-timer {
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: #12263f;
+            stroke-width: 3.5;
+        }
+
+        .circle-bar {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 3.5;
+            stroke-linecap: round;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.8s linear, stroke 0.3s;
+        }
+
+        .timer-text {
+            font-size: 12px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+        }
+
+        /* COPY BUTTON */
+        .btn-copy {
+            width: 100%;
+            background: linear-gradient(135deg, #00b0ff 0%, #00e5ff 100%);
+            border: none;
+            color: #041221;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-copy:active {
+            transform: translateY(0);
+        }
+
+        /* TIMELINE (PREV, NOW, NEXT) */
+        .timeline-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            background: #091522;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .timeline-item {
+            padding: 4px;
+        }
+
+        .timeline-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .timeline-val {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: bold;
+            color: #90caf9;
+        }
+
+        .timeline-val.active {
+            color: var(--green);
+        }
+
+        /* ACCOUNTS PRESETS */
+        .accounts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .accounts-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .accounts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .account-chip {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .account-chip:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--cyan);
+        }
+
+        .account-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #e0f2fe;
+        }
+
+        .account-sub {
+            font-size: 10.5px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .btn-del {
+            background: transparent;
+            border: none;
+            color: #ef5350;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px 6px;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00e5ff;
+            color: #041221;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 13px;
+            box-shadow: 0 4px 25px rgba(0, 229, 255, 0.5);
+            display: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="brand">
+                <span class="logo-icon">🛡️</span>
+                <div>
+                    <h1 class="title">OFFLINE 2FA AUTH</h1>
+                    <p class="subtitle">Secure Client-Side Authenticator (RFC 6238)</p>
+                </div>
+            </div>
+            <div class="badge-offline">
+                <span class="pulse-dot"></span>
+                <span>100% OFFLINE</span>
+            </div>
+        </div>
+
+        <!-- INPUT SECRET KEY -->
+        <div class="input-group">
+            <label for="inp-secret">Secret Key (MFA Token / Base32):</label>
+            <input type="text" id="inp-secret" class="input-text" placeholder="Contoh: APBTQQ4KMD25ZVMX" value="APBTQQ4KMD25ZVMX" autocomplete="off" spellcheck="false">
+
+            <!-- SANITIZER ALERT -->
+            <div id="sanitizer-box" class="sanitizer-box">
+                <span id="sanitizer-msg">⚠️ Terdeteksi karakter non-standar.</span>
+                <br>
+                <button type="button" id="btn-fix-secret" class="btn-autofix">🔧 Perbaiki Kunci Otomatis</button>
+            </div>
+        </div>
+
+        <!-- BIG 6-DIGIT DISPLAY -->
+        <div class="code-box">
+            <div id="code-val" class="code-display">------</div>
+
+            <div class="timer-container">
+                <svg class="svg-timer" width="34" height="34" viewBox="0 0 36 36">
+                    <circle class="circle-bg" cx="18" cy="18" r="15.9155"></circle>
+                    <circle id="circle-bar" class="circle-bar" cx="18" cy="18" r="15.9155"></circle>
+                </svg>
+                <span id="timer-txt" class="timer-text">30s</span>
+            </div>
+
+            <button type="button" id="btn-copy" class="btn-copy">
+                <span>📋 SALIN KODE 6 DIGIT</span>
+            </button>
+        </div>
+
+        <!-- TIMELINE (PREV, NOW, NEXT) -->
+        <div class="timeline-box">
+            <div class="timeline-item">
+                <div class="timeline-label">SEBELUMNYA (-30s)</div>
+                <div id="prev-code" class="timeline-val">------</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-label" style="color: var(--green); font-weight: bold;">SAAT INI (LIVE)</div>
+                <div id="now-code" class="timeline-val active">------</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-label">BERIKUTNYA (+30s)</div>
+                <div id="next-code" class="timeline-val">------</div>
+            </div>
+        </div>
+
+        <!-- SAVED ACCOUNTS -->
+        <div class="accounts-header">
+            <span class="accounts-title">💾 DAFTAR AKUN TERSIMPAN</span>
+            <button type="button" id="btn-save-acc" style="background: transparent; border: 1px solid var(--border-color); color: var(--cyan); padding: 2px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+                + Simpan Akun Ini
+            </button>
+        </div>
+        <div id="accounts-list" class="accounts-list"></div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast">Kode berhasil disalin!</div>
+
+    <script>
+        // ==============================================================================
+        // PURE CLIENT-SIDE OFFLINE TOTP (RFC 6238)
+        // ==============================================================================
+
+        const B32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+
+        function base32Decode(base32) {
+            const clean = base32.toUpperCase().replace(/[\s\-_=]+/g, "");
+            let bits = "";
+            for (let i = 0; i < clean.length; i++) {
+                const val = B32_ALPHABET.indexOf(clean[i]);
+                if (val === -1) continue;
+                bits += val.toString(2).padStart(5, "0");
+            }
+            const bytes = new Uint8Array(Math.floor(bits.length / 8));
+            for (let i = 0; i < bytes.length; i++) {
+                bytes[i] = parseInt(bits.substr(i * 8, 8), 2);
+            }
+            return bytes;
+        }
+
+        async function computeTOTP(secret, offsetSec = 0) {
+            const keyBytes = base32Decode(secret);
+            if (keyBytes.length === 0) return "------";
+
+            try {
+                const cryptoKey = await window.crypto.subtle.importKey(
+                    "raw",
+                    keyBytes,
+                    { name: "HMAC", hash: { name: "SHA-1" } },
+                    false,
+                    ["sign"]
+                );
+
+                const nowSec = Math.floor(Date.now() / 1000) + offsetSec;
+                const counter = Math.floor(nowSec / 30);
+
+                const buf = new ArrayBuffer(8);
+                const view = new DataView(buf);
+                view.setBigUint64(0, BigInt(counter), false);
+
+                const signature = await window.crypto.subtle.sign("HMAC", cryptoKey, buf);
+                const sigBytes = new Uint8Array(signature);
+
+                const offset = sigBytes[sigBytes.length - 1] & 0x0f;
+                const viewSig = new DataView(signature);
+                const binary = viewSig.getUint32(offset, false) & 0x7fffffff;
+
+                return (binary % 1000000).toString().padStart(6, "0");
+            } catch (e) {
+                console.error("Crypto error:", e);
+                return "------";
+            }
+        }
+
+        // DOM ELEMENTS
+        const inpSecret = document.getElementById("inp-secret");
+        const sanitizerBox = document.getElementById("sanitizer-box");
+        const sanitizerMsg = document.getElementById("sanitizer-msg");
+        const btnFixSecret = document.getElementById("btn-fix-secret");
+
+        const codeVal = document.getElementById("code-val");
+        const circleBar = document.getElementById("circle-bar");
+        const timerTxt = document.getElementById("timer-txt");
+        const btnCopy = document.getElementById("btn-copy");
+        const toast = document.getElementById("toast");
+
+        const prevCode = document.getElementById("prev-code");
+        const nowCode = document.getElementById("now-code");
+        const nextCode = document.getElementById("next-code");
+
+        const accountsList = document.getElementById("accounts-list");
+        const btnSaveAcc = document.getElementById("btn-save-acc");
+
+        let currentCleanSecret = "";
+
+        // CHECK & SANITIZE SECRET
+        function sanitizeSecret(raw) {
+            const trimmed = raw.trim().toUpperCase().replace(/[\s\-_]+/g, "");
+            let hasInvalid = false;
+            let invalidChars = [];
+
+            for (let char of trimmed) {
+                if (B32_ALPHABET.indexOf(char) === -1) {
+                    hasInvalid = true;
+                    if (!invalidChars.includes(char)) invalidChars.push(char);
+                }
+            }
+
+            if (hasInvalid) {
+                sanitizerBox.style.display = "block";
+                sanitizerMsg.innerHTML = `⚠️ Kunci mengandung karakter non-standar: <strong>[ ${invalidChars.join(", ")} ]</strong>.`;
+                // Check if ends with 19 or similar
+                let cleaned = trimmed;
+                for (let c of invalidChars) {
+                    cleaned = cleaned.split(c).join("");
+                }
+                btnFixSecret.textContent = `🔧 Perbaiki Otomatis ➔ ${cleaned}`;
+                btnFixSecret.onclick = () => {
+                    inpSecret.value = cleaned;
+                    updateUI();
+                };
+            } else {
+                sanitizerBox.style.display = "none";
+            }
+
+            return trimmed;
+        }
+
+        // UPDATE UI & CALCULATE CODES
+        let activeCodeRaw = "";
+
+        async function updateUI() {
+            const raw = inpSecret.value;
+            const secret = sanitizeSecret(raw);
+            currentCleanSecret = secret;
+
+            if (!secret) {
+                codeVal.textContent = "------";
+                codeVal.classList.add("invalid");
+                prevCode.textContent = "------";
+                nowCode.textContent = "------";
+                nextCode.textContent = "------";
+                return;
+            }
+
+            codeVal.classList.remove("invalid");
+
+            const [now, prev, next] = await Promise.all([
+                computeTOTP(secret, 0),
+                computeTOTP(secret, -30),
+                computeTOTP(secret, 30)
+            ]);
+
+            activeCodeRaw = now;
+            // Format 3 digits + space + 3 digits for readability
+            if (now.length === 6) {
+                codeVal.textContent = `${now.slice(0, 3)} ${now.slice(3)}`;
+            } else {
+                codeVal.textContent = now;
+            }
+
+            nowCode.textContent = now;
+            prevCode.textContent = prev;
+            nextCode.textContent = next;
+        }
+
+        // TIMER TICK LOOP
+        function tick() {
+            const now = Math.floor(Date.now() / 1000);
+            const remaining = 30 - (now % 30);
+
+            timerTxt.textContent = `${remaining}s`;
+
+            const pct = (remaining / 30) * 100;
+            circleBar.style.strokeDashoffset = (100 - pct);
+
+            if (remaining <= 5) {
+                circleBar.style.stroke = "var(--red)";
+            } else if (remaining <= 10) {
+                circleBar.style.stroke = "var(--amber)";
+            } else {
+                circleBar.style.stroke = "var(--cyan)";
+            }
+
+            // At interval rollover (30s)
+            if (remaining === 30 || remaining === 29) {
+                updateUI();
+            }
+        }
+
+        setInterval(tick, 1000);
+        tick();
+
+        inpSecret.addEventListener("input", updateUI);
+
+        // COPY FUNCTION
+        btnCopy.addEventListener("click", () => {
+            if (!activeCodeRaw || activeCodeRaw === "------") return;
+            navigator.clipboard.writeText(activeCodeRaw).then(() => {
+                toast.textContent = `✅ Kode ${activeCodeRaw} tersalin!`;
+                toast.style.display = "block";
+                setTimeout(() => toast.style.display = "none", 2200);
+            });
+        });
+
+        // LOCAL STORAGE ACCOUNTS
+        const STORAGE_KEY = "offline_2fa_accounts_v1";
+
+        function getSavedAccounts() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveAccounts(accs) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(accs));
+            renderAccounts();
+        }
+
+        function renderAccounts() {
+            let accs = getSavedAccounts();
+            if (accs.length === 0) {
+                // Preset default account
+                accs = [
+                    { name: "Tencent Cloud (VM)", key: "APBTQQ4KMD25ZVMX" }
+                ];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(accs));
+            }
+
+            accountsList.innerHTML = "";
+            accs.forEach((acc, i) => {
+                const el = document.createElement("div");
+                el.className = "account-chip";
+                el.innerHTML = `
+                    <div>
+                        <div class="account-name">${acc.name}</div>
+                        <div class="account-sub">${acc.key.slice(0, 4)}...${acc.key.slice(-4)}</div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-del" title="Hapus Akun">&times;</button>
+                    </div>
+                `;
+
+                el.addEventListener("click", (e) => {
+                    if (e.target.classList.contains("btn-del")) {
+                        e.stopPropagation();
+                        if (confirm(`Hapus akun "${acc.name}"?`)) {
+                            accs.splice(i, 1);
+                            saveAccounts(accs);
+                        }
+                        return;
+                    }
+                    inpSecret.value = acc.key;
+                    updateUI();
+                });
+
+                accountsList.appendChild(el);
+            });
+        }
+
+        btnSaveAcc.addEventListener("click", () => {
+            const key = inpSecret.value.trim().toUpperCase().replace(/[\s\-_=]+/g, "");
+            if (!key) return alert("Kunci rahasia kosong!");
+            const name = prompt("Masukkan nama akun (contoh: Tencent Cloud, GitHub, dsb):", "Akun Saya");
+            if (!name) return;
+
+            const accs = getSavedAccounts();
+            accs.push({ name: name.trim(), key: key });
+            saveAccounts(accs);
+        });
+
+        // INIT
+        renderAccounts();
+        updateUI();
+    </script>
+</body>
+</html>
