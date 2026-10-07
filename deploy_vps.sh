@@ -51,9 +51,14 @@ fi
 
 echo -e "${GREEN}[3/6] Menyiapkan direktori proyek di ${INSTALL_DIR}...${NC}"
 if [ -f "app.py" ] && [ -d "static" ]; then
-    echo -e "${CYAN}Menyalin file dari direktori saat ini...${NC}"
-    mkdir -p "$INSTALL_DIR"
-    cp -a . "$INSTALL_DIR/"
+    CURRENT_DIR=$(pwd)
+    if [ "$CURRENT_DIR" != "$INSTALL_DIR" ]; then
+        echo -e "${CYAN}Menyalin file dari ${CURRENT_DIR} ke ${INSTALL_DIR}...${NC}"
+        mkdir -p "$INSTALL_DIR"
+        cp -a . "$INSTALL_DIR/"
+    else
+        echo -e "${CYAN}Sudah berada di direktori instalasi (${INSTALL_DIR}).${NC}"
+    fi
 else
     REPO_URL="${1:-https://github.com/AbyanZainZ/TraffNode.git}"
     echo -e "${YELLOW}Mengunduh source code dari ${REPO_URL}...${NC}"
