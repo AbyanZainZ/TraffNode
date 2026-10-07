@@ -82,6 +82,22 @@ echo -e "${GREEN}[5/6] Tuning Kernel Limits & Konfigurasi Firewall Port 8888...$
 ulimit -n 65535 2>/dev/null || true
 sysctl -w fs.file-max=2097152 2>/dev/null || true
 
+# Otomatis buat Swap jika swap kosong (sangat penting untuk VPS Tencent 1-2GB RAM)
+TOTAL_SWAP=$(free -m | awk '/Swap:/ {print $2}')
+if [ -z "$TOTAL_SWAP" ] || [ "$TOTAL_SWAP" -lt 1000 ]; then
+    echo -e "${YELLOW}Membuat 4GB Swapfile agar server tidak kehabisan RAM...${NC}"
+    if [ ! -f /swapfile ]; then
+        fallocate -l 4G /swapfile 2>/dev/null || dd if=/dev/zero of=/swapfile bs=1M count=4096 2>/dev/null || true
+        chmod 600 /swapfile
+        mkswap /swapfile 2>/dev/null || true
+        swapon /swapfile 2>/dev/null || true
+        if ! grep -q "/swapfile" /etc/fstab; then
+            echo '/swapfile none swap sw 0 0' >> /etc/fstab
+        fi
+        sysctl vm.swappiness=25 2>/dev/null || true
+    fi
+fi
+
 ufw allow 22/tcp comment "SSH" || true
 ufw allow 8080/tcp comment "ProxyChain Dashboard" || true
 ufw allow 8888/tcp comment "TraffNode Dashboard" || true

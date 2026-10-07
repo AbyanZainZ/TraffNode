@@ -51,6 +51,10 @@ class NodeSupervisor:
         env = os.environ.copy()
         env["HOME"] = str(node_home)
         env["USERPROFILE"] = str(node_home)
+        # .NET Workstation GC & Low-Memory Tuning (Menghemat RAM di VPS kecil)
+        env["DOTNET_gcServer"] = "0"
+        env["COMPlus_gcServer"] = "0"
+        env["DOTNET_GCHeapHardLimit"] = "35000000"
 
         tm_bin = self._get_tm_binary()
 
@@ -269,7 +273,7 @@ class NodeSupervisor:
                 ok = self.start_node(node, token, surfshark_privkey=surfshark_privkey)
                 if ok:
                     started += 1
-                time.sleep(0.05)
+                time.sleep(0.5)
         return started
 
     def stop_all(self, nodes: List[ProxyNode]):
