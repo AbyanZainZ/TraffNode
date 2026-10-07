@@ -71,8 +71,10 @@ ulimit -n 65535 2>/dev/null || true
 sysctl -w fs.file-max=2097152 2>/dev/null || true
 
 ufw allow 22/tcp comment "SSH" || true
+ufw allow 8080/tcp comment "ProxyChain Dashboard" || true
 ufw allow 8888/tcp comment "TraffNode Dashboard" || true
-ufw --force enable || true
+ufw allow 10000:20000/tcp comment "ProxyChain Relay Ports" || true
+ufw status | grep -q "Status: active" && ufw reload || true
 
 echo -e "${GREEN}[6/6] Mendaftarkan Systemd Service (traffnode.service)...${NC}"
 cat << 'EOF' > /etc/systemd/system/traffnode.service
